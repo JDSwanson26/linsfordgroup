@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin:0; font-family:'DM Sans',system-ui,sans-serif; color:#16324f; background:#fff; -webkit-font-smoothing:antialiased; }
+    h1,h2,h3,h4 { font-family:'Poppins',sans-serif; margin:0; }
+    a { color:#e0961e; } a:hover { color:#c07f12; }
+    ::selection { background:#e0961e; color:#0f2d4d; }
+    @media (max-width: 980px) {
+      .quote-panel { grid-template-columns:1fr !important; }
+      .sticky-panel { position:relative !important; top:auto !important; }
+      .stack-cols-2 { grid-template-columns:1fr !important; }
+    }
+    @media (max-width: 480px) {
+      .quote-fields { grid-template-columns:1fr !important; }
+    }
+  </style>
+  <script src="./image-slot.js"></script>
+</helmet>
+
+<dc-import name="spotlight" hint-size="0,0"></dc-import>
+<dc-import name="site-nav" active="quote" hint-size="100%,72px"></dc-import>
+
+<div style="width:100%;overflow-x:hidden;">
+
+  <section style="position:relative;overflow:hidden;background:#0f2d4d;padding:160px 24px 84px;text-align:center;">
+    <div style="position:relative;z-index:3;max-width:860px;margin:0 auto;">
+      <span style="font-weight:600;letter-spacing:0.28em;text-transform:uppercase;font-size:13px;color:#e0961e;">Request Quote</span>
+      <h1 style="font-size:clamp(38px,6vw,62px);font-weight:800;letter-spacing:-0.03em;color:#fff;margin-top:14px;">Get a Custom Quote</h1>
+      <p style="font-size:17px;line-height:1.6;color:rgba(255,255,255,0.85);margin-top:18px;">Provide some details and our team will prepare an accurate shipping quote for you.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:0 auto;padding:60px 32px 110px;">
+    <div class="quote-panel" style="display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start;">
+      <div style="background:#fff;border-radius:20px;border:1px solid #e9edf2;padding:28px;box-shadow:0 26px 56px -40px rgba(15,45,77,0.5);">
+        <h2 style="font-size:20px;font-weight:700;color:#16324f;">Shipment details</h2>
+        <p style="color:#6a7987;margin-top:10px;">Fill in the details below to help us quote accurately.</p>
+        <div class="quote-fields" style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <input placeholder="Origin" style="padding:12px;border-radius:8px;border:1px solid #dde3ea;">
+          <input placeholder="Destination" style="padding:12px;border-radius:8px;border:1px solid #dde3ea;">
+          <input placeholder="Weight (kg)" style="padding:12px;border-radius:8px;border:1px solid #dde3ea;">
+          <input placeholder="Dimensions (cm)" style="padding:12px;border-radius:8px;border:1px solid #dde3ea;">
+        </div>
+        <textarea placeholder="Additional details" rows="6" style="width:100%;margin-top:14px;padding:12px;border-radius:8px;border:1px solid #dde3ea;"></textarea>
+        <button style="width:100%;margin-top:14px;background:#e0961e;color:#0f2d4d;padding:12px 18px;border-radius:10px;border:none;font-weight:700;">Request Quote</button>
+      </div>
+      <aside class="sticky-panel" style="position:sticky;top:92px;background:#fff;border-radius:20px;border:1px solid #e9edf2;padding:22px;box-shadow:0 26px 56px -40px rgba(15,45,77,0.5);">
+        <h3 style="font-size:16px;font-weight:700;color:#16324f;">Why Linsford?</h3>
+        <ul style="margin-top:10px;color:#5a6b7b;line-height:1.85;padding-left:18px;">
+          <li>Experienced customs brokers</li>
+          <li>Worldwide agent network</li>
+          <li>Transparent pricing</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="contact.html" style="display:inline-block;margin-top:14px;background:#0f2d4d;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;">Contact us</a>
+      </aside>
+    </div>
+  </section>
+
+</div>
+
+<dc-import name="site-footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script>
+</body>
+</html>
