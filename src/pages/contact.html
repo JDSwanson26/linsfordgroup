@@ -46,23 +46,39 @@
       <iframe title="Linsford Group location" src="https://www.google.com/maps?q=Montague+Gardens+Cape+Town&output=embed" style="width:100%;height:100%;min-height:440px;border:0;display:block;"></iframe>
     </div>
     <div style="background:#f7f9fb;border:1px solid #e9edf2;border-radius:22px;padding:40px;">
-      <h3 style="font-size:22px;font-weight:600;color:#16324f;">Send us a message</h3>
-      <p style="font-size:14.5px;color:#6a7987;margin-top:6px;">We'll get back to you within one business day.</p>
-      <div class="stack-cols-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
-        <div>
-          <label style="font-size:13px;font-weight:600;color:#16324f;">Name <span style="color:#e0961e;">*</span></label>
-          <input value="{{ form.name }}" onInput="{{ setName }}" placeholder="John Smith" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:30px 10px;animation:pop .4s ease both;">
+          <div style="width:64px;height:64px;margin:0 auto;border-radius:50%;background:rgba(224,150,30,0.14);display:flex;align-items:center;justify-content:center;color:#e0961e;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+          </div>
+          <h3 style="font-size:21px;font-weight:700;color:#16324f;margin-top:18px;">Message sent</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#5a6b7b;margin-top:10px;">Thanks — we'll get back to you within one business day.</p>
         </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
         <div>
-          <label style="font-size:13px;font-weight:600;color:#16324f;">Phone</label>
-          <input value="{{ form.phone }}" onInput="{{ setPhone }}" placeholder="+27 XX XXX XXXX" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);">
+          <h3 style="font-size:22px;font-weight:600;color:#16324f;">Send us a message</h3>
+          <p style="font-size:14.5px;color:#6a7987;margin-top:6px;">We'll get back to you within one business day.</p>
+          <div class="stack-cols-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#16324f;">Name <span style="color:#e0961e;">*</span></label>
+              <input value="{{ form.name }}" onInput="{{ setName }}" placeholder="John Smith" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);">
+            </div>
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#16324f;">Phone</label>
+              <input value="{{ form.phone }}" onInput="{{ setPhone }}" placeholder="+27 XX XXX XXXX" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);">
+            </div>
+          </div>
+          <label style="display:block;font-size:13px;font-weight:600;color:#16324f;margin-top:18px;">Email <span style="color:#e0961e;">*</span></label>
+          <input value="{{ form.email }}" onInput="{{ setEmail }}" placeholder="john@company.com" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);">
+          <label style="display:block;font-size:13px;font-weight:600;color:#16324f;margin-top:18px;">Message <span style="color:#e0961e;">*</span></label>
+          <textarea value="{{ form.message }}" onInput="{{ setMessage }}" placeholder="How can we help?" rows="5" style="{{ textareaStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></textarea>
+          <button onClick="{{ submit }}" style="width:100%;margin-top:24px;background:#e0961e;color:#0f2d4d;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.04em;padding:16px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 16px 34px -14px rgba(224,150,30,0.85);transition:transform .18s ease,background .18s ease,color .18s ease;" style-hover="transform:translateY(-2px);background:#0f2d4d !important;color:#e0961e !important;">{{ submitLabel }}</button>
+          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+            <p style="text-align:center;font-size:13.5px;color:#c0392b;margin-top:10px;">{{ sendError }}</p>
+          </sc-if>
         </div>
-      </div>
-      <label style="display:block;font-size:13px;font-weight:600;color:#16324f;margin-top:18px;">Email <span style="color:#e0961e;">*</span></label>
-      <input value="{{ form.email }}" onInput="{{ setEmail }}" placeholder="john@company.com" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);">
-      <label style="display:block;font-size:13px;font-weight:600;color:#16324f;margin-top:18px;">Message <span style="color:#e0961e;">*</span></label>
-      <textarea value="{{ form.message }}" onInput="{{ setMessage }}" placeholder="How can we help?" rows="5" style="{{ textareaStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></textarea>
-      <button onClick="{{ submit }}" style="width:100%;margin-top:24px;background:#e0961e;color:#0f2d4d;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.04em;padding:16px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 16px 34px -14px rgba(224,150,30,0.85);transition:transform .18s ease,background .18s ease;" style-hover="transform:translateY(-2px);background:#c07f12 !important;">Send Message →</button>
+      </sc-if>
     </div>
   </section>
 
@@ -72,7 +88,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { form: { name: '', phone: '', email: '', message: '' } };
+  state = { form: { name: '', phone: '', email: '', message: '' }, submitted: false, sending: false, sendError: null };
   set(f) { return (e) => this.setState(s => ({ form: { ...s.form, [f]: e.target.value } })); }
 
   renderVals() {
@@ -81,13 +97,40 @@ class Component extends DCLogic {
     const textareaStyle = inputStyle + 'resize:vertical;';
     const svg = (p) => React.createElement('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', dangerouslySetInnerHTML: { __html: p } });
     const submit = () => {
-      const body = `Name: ${f.name}\nEmail: ${f.email}\nPhone: ${f.phone}\n\n${f.message}`;
-      window.location.href = `mailto:info@linsfordgroup.co.za?subject=${encodeURIComponent('Website enquiry')}&body=${encodeURIComponent(body)}`;
+      if (this.state.sending) return;
+      const body = `Name: ${f.name}\nPhone: ${f.phone}\n\n${f.message}`;
+      this.setState({ sending: true, sendError: null });
+      fetch('../send-message.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          name: f.name,
+          email: f.email,
+          phone: f.phone,
+          subject: 'Website enquiry',
+          message: body,
+        }).toString(),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            this.setState({ submitted: true, sending: false });
+          } else {
+            this.setState({ sending: false, sendError: data.error || 'Something went wrong. Please try again or call us.' });
+          }
+        })
+        .catch(() => {
+          this.setState({ sending: false, sendError: 'Could not reach the server. Please try again or call us directly.' });
+        });
     };
     return {
       form: f, inputStyle, textareaStyle,
       setName: this.set('name'), setPhone: this.set('phone'), setEmail: this.set('email'), setMessage: this.set('message'),
       submit,
+      submitted: this.state.submitted, notSubmitted: !this.state.submitted,
+      submitLabel: this.state.sending ? 'Sending…' : 'Send Message →',
+      sendError: this.state.sendError || '',
+      hasError: !!this.state.sendError,
       cards: [
         { title: 'Physical Address', body: 'Unit C, Parc Dumont,\n20 Railway Road,\nMontague Gardens,\nCape Town, South Africa', icon: svg('<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>') },
         { title: 'Call Us', body: 'Tel: +27 21 552 6577\nFax: +27 21 552 6801', icon: svg('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>') },
