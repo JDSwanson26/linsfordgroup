@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/vlp30ajtouyi/public_html/
+    - /bin/cp -R src/* $DEPLOYPATH
+    - /bin/cp -R public/* $DEPLOYPATH
