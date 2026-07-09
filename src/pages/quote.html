@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/support.js"></script>
+</head>
+<body class="page-quote">
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  <script src="../js/image-slot.js"></script>
+</helmet>
+
+<dc-import name="spotlight" hint-size="0,0"></dc-import>
+<dc-import name="site-nav" active="quote" hint-size="100%,72px"></dc-import>
+
+<div style="width:100%;overflow-x:hidden;">
+
+  <section class="quote-hero" data-tone="dark" style="position:relative;overflow:hidden;background:#0f2d4d;padding:150px 24px 90px;">
+    <div style="position:absolute;top:0;right:10%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(224,150,30,0.24),transparent 70%);z-index:1;animation:blob-drift 20s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-60px;left:6%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);z-index:1;animation:blob-rise-services 26s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;z-index:2;max-width:1120px;margin:0 auto;">
+      <span style="font-weight:600;letter-spacing:0.28em;text-transform:uppercase;font-size:13px;color:#e0961e;">Request Pricing</span>
+      <h1 style="font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-0.03em;color:#fff;margin-top:14px;">Get a Quote</h1>
+      <p style="font-size:clamp(16px,2vw,19px);line-height:1.6;color:rgba(255,255,255,0.82);margin-top:18px;max-width:560px;">Tell us about your shipment and one of our consultants will respond with a customized quote within one business day.</p>
+    </div>
+  </section>
+
+  <section class="quote-panel" style="max-width:1120px;margin:-56px auto 0;position:relative;z-index:5;padding:0 32px 100px;display:grid;grid-template-columns:0.8fr 1.2fr;gap:32px;align-items:start;">
+
+    <!-- SIDE PANEL -->
+    <div class="sticky-panel" data-tone="dark" style="background:#16324f;border-radius:24px;padding:40px;color:#fff;box-shadow:0 50px 100px -46px rgba(15,45,77,0.7);position:sticky;top:96px;">
+      <h3 style="font-size:20px;font-weight:600;color:#fff;">Why request through us?</h3>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-top:26px;">
+        <sc-for list="{{ perks }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:40px;height:40px;border-radius:11px;background:rgba(224,150,30,0.18);display:flex;align-items:center;justify-content:center;color:#e0961e;flex-shrink:0;">{{ p.icon }}</div>
+            <div>
+              <h4 style="font-size:15px;font-weight:600;color:#fff;">{{ p.title }}</h4>
+              <p style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.68);margin-top:3px;">{{ p.body }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:32px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.14);">
+        <p style="font-size:13.5px;color:rgba(255,255,255,0.7);">Prefer to talk?</p>
+        <p style="font-size:19px;font-family:'Poppins',sans-serif;font-weight:600;color:#e0961e;margin-top:4px;">+27 21 552 6577</p>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div style="background:#fff;border:1px solid #e9edf2;border-radius:24px;padding:44px;box-shadow:0 50px 100px -50px rgba(15,45,77,0.5);">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:40px 10px;animation:pop .4s ease both;">
+          <div style="width:76px;height:76px;margin:0 auto;border-radius:50%;background:rgba(224,150,30,0.14);display:flex;align-items:center;justify-content:center;color:#e0961e;">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+          </div>
+          <h3 style="font-size:24px;font-weight:700;color:#16324f;margin-top:22px;">Request ready to send</h3>
+          <p style="font-size:15px;line-height:1.6;color:#5a6b7b;margin-top:12px;max-width:400px;margin-left:auto;margin-right:auto;">Your email client should have opened with the details. If it didn't, call us on +27 21 552 6577 and we'll take it from there.</p>
+          <button onClick="{{ reset }}" style="margin-top:26px;background:transparent;color:#e0961e;font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;padding:13px 26px;border:1.5px solid #e0961e;border-radius:11px;cursor:pointer;transition:background .16s,color .16s;" style-hover="background:#e0961e !important;color:#0f2d4d !important;">Submit another request</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <h3 style="font-size:23px;font-weight:600;color:#16324f;">Shipment details</h3>
+          <p style="font-size:14.5px;color:#6a7987;margin-top:6px;">Fields marked <span style="color:#e0961e;">*</span> are required.</p>
+
+          <h4 style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8a97a4;margin:30px 0 14px;">Your details</h4>
+          <div class="quote-fields" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div><label style="{{ labelStyle }}">Full name <span style="color:#e0961e;">*</span></label><input value="{{ form.name }}" onInput="{{ s.name }}" placeholder="John Smith" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+            <div><label style="{{ labelStyle }}">Company</label><input value="{{ form.company }}" onInput="{{ s.company }}" placeholder="Your Company Ltd" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+            <div><label style="{{ labelStyle }}">Email <span style="color:#e0961e;">*</span></label><input value="{{ form.email }}" onInput="{{ s.email }}" placeholder="john@company.com" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+            <div><label style="{{ labelStyle }}">Phone <span style="color:#e0961e;">*</span></label><input value="{{ form.phone }}" onInput="{{ s.phone }}" placeholder="+27 XX XXX XXXX" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+          </div>
+
+          <h4 style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8a97a4;margin:28px 0 14px;">Shipment type</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6"><button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for>
+          </div>
+
+          <h4 style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8a97a4;margin:28px 0 14px;">Route &amp; direction</h4>
+          <div style="display:flex;gap:10px;margin-bottom:16px;">
+            <sc-for list="{{ dirChips }}" as="c" hint-placeholder-count="3"><button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for>
+          </div>
+          <div class="quote-fields" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div><label style="{{ labelStyle }}">Origin (From) <span style="color:#e0961e;">*</span></label><input value="{{ form.origin }}" onInput="{{ s.origin }}" placeholder="City, Country" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+            <div><label style="{{ labelStyle }}">Destination (To) <span style="color:#e0961e;">*</span></label><input value="{{ form.dest }}" onInput="{{ s.dest }}" placeholder="City, Country" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+          </div>
+
+          <h4 style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8a97a4;margin:28px 0 14px;">Cargo</h4>
+          <div class="quote-fields" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div><label style="{{ labelStyle }}">Approx. weight</label><input value="{{ form.weight }}" onInput="{{ s.weight }}" placeholder="e.g. 500 kg" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+            <div><label style="{{ labelStyle }}">Dimensions / volume</label><input value="{{ form.dims }}" onInput="{{ s.dims }}" placeholder="e.g. 2 x pallets, 1.2m³" style="{{ inputStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></div>
+          </div>
+          <label style="{{ labelStyle }}">Commodity / description <span style="color:#e0961e;">*</span></label>
+          <textarea value="{{ form.notes }}" onInput="{{ s.notes }}" placeholder="What are you shipping? Include any special requirements or timelines." rows="4" style="{{ textareaStyle }}" style-focus="border-color:#e0961e;box-shadow:0 0 0 3px rgba(224,150,30,0.16);"></textarea>
+
+          <button onClick="{{ submit }}" style="width:100%;margin-top:28px;background:#e0961e;color:#0f2d4d;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.04em;padding:17px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 18px 40px -14px rgba(224,150,30,0.85);transition:transform .18s ease,background .18s ease,color .18s ease;" style-hover="transform:translateY(-2px);background:#0f2d4d !important;color:#e0961e !important;">Request Quote →</button>
+          <p style="text-align:center;font-size:13px;color:#8a97a4;margin-top:14px;">Opens your email client to send the request to info@linsfordgroup.co.za</p>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+</div>
+
+<dc-import name="site-footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    form: { name: '', company: '', email: '', phone: '', origin: '', dest: '', weight: '', dims: '', notes: '' },
+    service: 'Sea Freight',
+    direction: 'Import',
+    submitted: false,
+  };
+  set(f) { return (e) => this.setState(st => ({ form: { ...st.form, [f]: e.target.value } })); }
+
+  renderVals() {
+    const f = this.state.form;
+    const labelStyle = "display:block;font-size:13px;font-weight:600;color:#16324f;margin-top:14px;";
+    const inputStyle = "width:100%;margin-top:7px;padding:13px 14px;border:1px solid #dde3ea;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14.5px;color:#16324f;outline:none;background:#fff;transition:border-color .16s,box-shadow .16s;";
+    const textareaStyle = inputStyle + 'resize:vertical;';
+    const svg = (p) => React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', dangerouslySetInnerHTML: { __html: p } });
+
+    const chipStyle = (on) => `padding:9px 16px;border-radius:999px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .16s ease;border:1px solid ${on ? '#e0961e' : '#dde3ea'};background:${on ? '#e0961e' : '#fff'};color:${on ? '#0f2d4d' : '#16324f'};`;
+    const chips = ['Personal & Household', 'Motor Vehicles', 'Machinery', 'General Cargo', 'Air Freight', 'Sea Freight', 'Marine Insurance', 'Storage'].map(name => ({
+      label: name, onClick: () => this.setState({ service: name }), style: chipStyle(this.state.service === name),
+    }));
+    const dirChips = ['Import', 'Export', 'Both'].map(name => ({
+      label: name, onClick: () => this.setState({ direction: name }), style: chipStyle(this.state.direction === name),
+    }));
+
+    const submit = () => {
+      const body = [
+        `Name: ${f.name}`, `Company: ${f.company}`, `Email: ${f.email}`, `Phone: ${f.phone}`,
+        `Service: ${this.state.service}`, `Direction: ${this.state.direction}`,
+        `Origin: ${f.origin}`, `Destination: ${f.dest}`,
+        `Weight: ${f.weight}`, `Dimensions/volume: ${f.dims}`,
+        `Commodity / details: ${f.notes}`,
+      ].join('\n');
+      window.location.href = `mailto:info@linsfordgroup.co.za?subject=${encodeURIComponent('Quote request — ' + this.state.service)}&body=${encodeURIComponent(body)}`;
+      this.setState({ submitted: true });
+    };
+    const reset = () => this.setState({ submitted: false });
+
+    return {
+      form: f, labelStyle, inputStyle, textareaStyle, chips, dirChips, submit, reset,
+      submitted: this.state.submitted, notSubmitted: !this.state.submitted,
+      s: { name: this.set('name'), company: this.set('company'), email: this.set('email'), phone: this.set('phone'), origin: this.set('origin'), dest: this.set('dest'), weight: this.set('weight'), dims: this.set('dims'), notes: this.set('notes') },
+      perks: [
+        { title: '30+ years experience', body: 'Deep expertise across every commodity type.', icon: svg('<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>') },
+        { title: 'BEE Level Two', body: 'The right partnership for your business.', icon: svg('<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>') },
+        { title: 'Global agent network', body: 'Agents at most major ports worldwide.', icon: svg('<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>') },
+        { title: 'Fast turnaround', body: 'A quote back within one business day.', icon: svg('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>') },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

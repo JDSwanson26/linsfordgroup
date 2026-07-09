@@ -1,0 +1,93 @@
+/* Shared decorative keyframes, de-duplicated across pages.
+   Renamed from the original per-page "blobA/blobB/blobC" so identical
+   animations aren't redefined per page and near-identical ones don't collide. */
+@keyframes float-up { from { opacity:0; transform:translateY(24px);} to { opacity:1; transform:translateY(0);} }
+@keyframes blob-drift { 0%{transform:translate(0,0) scale(1);} 50%{transform:translate(50px,40px) scale(1.2);} 100%{transform:translate(0,0) scale(1);} }
+@keyframes blob-drift-home { 0%{transform:translate(0,0) scale(1);} 50%{transform:translate(60px,40px) scale(1.2);} 100%{transform:translate(0,0) scale(1);} }
+@keyframes blob-rise { 0%{transform:translate(0,0) scale(1);} 50%{transform:translate(-50px,30px) scale(1.15);} 100%{transform:translate(0,0) scale(1);} }
+@keyframes blob-rise-services { 0%{transform:translate(0,0) scale(1);} 50%{transform:translate(-40px,30px) scale(1.15);} 100%{transform:translate(0,0) scale(1);} }
+@keyframes blob-fall { 0%{transform:translate(0,0) scale(1);} 50%{transform:translate(30px,-50px) scale(1.25);} 100%{transform:translate(0,0) scale(1);} }
+@keyframes pop { from { opacity:0; transform:scale(.9);} to { opacity:1; transform:scale(1);} }
+
+/* Generic grid-stacking utility, shared verbatim across every page that uses it. */
+@media (max-width: 980px) {
+  .stack-cols-2, .stack-cols-3, .stack-cols-4 { grid-template-columns:1fr !important; }
+}
+
+/* The fixed header wraps to more rows as the viewport narrows (up to 4 rows,
+   ~225px tall, below ~480px; ~177px tall between ~480-980px), which is taller
+   than any hero section's mobile top padding accounted for — headings were
+   rendering clipped/hidden behind it. Every non-home hero section needs top
+   padding that clears the taller narrow-phone case specifically. */
+@media (max-width: 480px) {
+  .page-services .services-hero,
+  .page-gallery .gallery-hero,
+  .page-downloads .downloads-hero,
+  .page-contact .contact-hero,
+  .page-quote .quote-hero { padding-top: 245px !important; }
+}
+
+/* NOTE: `.page-section` is reused across pages but each page tunes its own
+   mobile padding, so every rule below is scoped by the page's <body> class
+   (page-home / page-services / page-contact / page-downloads) to avoid one
+   page's padding leaking into another's. Add the matching class to <body>
+   when wiring a page to this stylesheet. */
+
+/* Home (index.html) */
+.page-home { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+.page-home section { scroll-snap-align: start; scroll-snap-stop: always; }
+@media (max-width: 980px) {
+  .page-home .hero-section { padding:100px 18px 70px !important; }
+  .page-home .page-section { padding:70px 18px !important; }
+  .page-home .stack-cols-2 .column-gap { gap:24px !important; }
+  .page-home .stack-cols-2 > div, .page-home .stack-cols-2 > section { width:100% !important; }
+  .page-home .about-panel { margin-left:0 !important; }
+  .page-home .sticky-section { position:relative !important; top:auto !important; }
+  .page-home .hero-section h1 { font-size: clamp(32px, 9vw, 56px) !important; }
+}
+
+/* Services (services.html) */
+@media (max-width: 980px) {
+  .page-services .services-hero { padding:190px 18px 70px !important; }
+  .page-services .page-section { padding:72px 18px 40px !important; }
+  .page-services .cards-grid { gap:22px !important; }
+  .page-services .addons-grid { grid-template-columns:1fr 1fr !important; gap:18px !important; }
+  .page-services .page-section h2 { text-align:center !important; }
+}
+@media (max-width: 560px) {
+  .page-services .addons-grid { grid-template-columns:1fr !important; }
+}
+
+/* Gallery (gallery.html) */
+@media (max-width: 980px) {
+  .page-gallery .gallery-hero { padding:190px 18px 70px !important; }
+  .page-gallery .gallery-grid { grid-template-columns:1fr !important; grid-auto-rows:200px !important; }
+  .page-gallery .gallery-cta { padding:72px 18px !important; }
+}
+
+/* Downloads (downloads.html) */
+@media (max-width: 980px) {
+  .page-downloads .downloads-hero { padding:190px 18px 70px !important; }
+  .page-downloads .downloads-list { grid-template-columns:1fr !important; }
+  .page-downloads .page-section { padding:60px 18px 90px !important; }
+}
+
+/* Contact (contact.html) */
+@media (max-width: 980px) {
+  .page-contact .contact-hero { padding:190px 18px 70px !important; }
+  .page-contact .page-section { padding:50px 18px 80px !important; }
+  .page-contact .contact-card { flex-direction:column !important; }
+  .page-contact .contact-card div:first-child { margin-bottom:16px !important; }
+  .page-contact .contact-card > div:last-child { width:100% !important; }
+}
+
+/* Quote (quote.html) */
+@media (max-width: 980px) {
+  .page-quote .quote-hero { padding:190px 18px 60px !important; }
+  .page-quote .quote-panel { grid-template-columns:1fr !important; margin-top:-30px !important; padding:0 18px 70px !important; }
+  .page-quote .quote-panel > div { padding:26px !important; }
+  .page-quote .sticky-panel { position:relative !important; top:auto !important; }
+}
+@media (max-width: 480px) {
+  .page-quote .quote-fields { grid-template-columns:1fr !important; }
+}

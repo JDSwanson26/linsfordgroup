@@ -1,0 +1,10 @@
+/* Styles for the site-nav.html component (imported via dc-import on every page). */
+.site-nav__container { max-width:1240px; margin:0 auto; padding:13px 32px; display:flex; align-items:center; gap:40px; }
+.site-nav__links { display:flex; align-items:center; gap:6px; margin-left:auto; flex-wrap:wrap; }
+.site-nav__quote { white-space:nowrap; }
+@media (max-width: 980px) {
+  .site-nav__container { padding:13px 18px; gap:12px; flex-wrap:wrap; }
+  .site-nav__links { width:100%; justify-content:center; order:2; margin-left:0; gap:10px; }
+  .site-nav__quote { order:3; width:100%; display:flex; justify-content:center; }
+  .site-nav__links a { white-space: normal; }
+}

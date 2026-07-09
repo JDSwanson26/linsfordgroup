@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/support.js"></script>
+</head>
+<body class="page-home">
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  <script src="../js/image-slot.js"></script>
+</helmet>
+
+<dc-import name="spotlight" hint-size="0,0"></dc-import>
+<dc-import name="site-nav" active="home" hint-size="100%,72px"></dc-import>
+
+<div class="snap-root" style="width:100%;overflow-x:hidden;">
+
+  <!-- HERO with video -->
+  <section class="hero-section" data-tone="dark" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 24px 90px;overflow:hidden;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <image-slot id="lg-hero-bg" shape="rect" fit="cover" placeholder="Cape Town port — video poster / fallback image" src="../assets/images/contact-hero.jpg"></image-slot>
+    </div>
+    <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="../assets/images/contact-hero.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+      <source data-src="../assets/videos/cape-town-port.mp4" type="video/mp4">
+    </video>
+    <script>
+      (function(){
+        const vid = document.getElementById('hero-video');
+        if (!vid) return;
+        const src = vid.querySelector('source');
+        function loadAndPlay() {
+          if (!src) return;
+          if (!src.src) src.src = src.dataset.src || src.getAttribute('data-src');
+          vid.load();
+          vid.play().catch(()=>{});
+        }
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                loadAndPlay();
+                obs.disconnect();
+              }
+            });
+          }, { rootMargin: '200px' });
+          io.observe(vid);
+        } else {
+          // fallback: load immediately
+          loadAndPlay();
+        }
+      })();
+    </script>
+    <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(15,45,77,0.68) 0%,rgba(15,45,77,0.8) 100%);pointer-events:none;"></div>
+    <div style="position:absolute;top:8%;left:12%;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(224,150,30,0.28),transparent 70%);filter:blur(20px);z-index:3;animation:blob-drift-home 18s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:6%;right:10%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.14),transparent 70%);filter:blur(16px);z-index:3;animation:blob-rise 24s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;z-index:4;max-width:880px;">
+      <span style="display:inline-block;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;font-size:13px;color:#f0cf8f;margin-bottom:24px;animation:float-up .6s ease both;">Customs Clearing &amp; Freight Forwarding</span>
+      <h1 style="font-size:clamp(46px,7vw,86px);line-height:1.0;font-weight:800;letter-spacing:-0.03em;color:#fff;animation:float-up .7s ease both;">Import &amp; Export<br><span style="color:#e0961e;">Solutions.</span></h1>
+      <p style="max-width:560px;margin:26px auto 0;font-size:clamp(17px,2vw,20px);line-height:1.6;color:rgba(255,255,255,0.85);animation:float-up .8s ease both;">Linsford Group are trusted customs clearing and freight forwarding agents — moving your cargo across the globe for over 30 years.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px;animation:float-up .9s ease both;">
+        <a href="services.html" style="display:inline-flex;align-items:center;gap:10px;background:#e0961e;color:#0f2d4d;font-weight:600;font-size:15px;letter-spacing:0.03em;padding:17px 30px;border-radius:12px;text-decoration:none;box-shadow:0 18px 40px -14px rgba(224,150,30,0.9);transition:transform .18s ease,background .18s ease;" style-hover="transform:translateY(-3px);background:#c07f12 !important;color:#0f2d4d;">Explore Services →</a>
+        <a href="quote.html" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);color:#fff;font-weight:600;font-size:15px;letter-spacing:0.03em;padding:17px 30px;border-radius:12px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.5);transition:background .18s ease,border-color .18s ease,color .18s ease;" style-hover="background:#fff !important;border-color:#fff !important;color:#0f2d4d !important;">Get a Quote →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME -->
+  <section class="page-section stack-cols-2" style="max-width:1180px;margin:0 auto;padding:110px 32px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+    <div>
+      <span style="font-weight:600;letter-spacing:0.24em;text-transform:uppercase;font-size:13px;color:#8a97a4;">Welcome to Linsford</span>
+      <h2 style="font-size:clamp(38px,4.5vw,56px);line-height:1.05;font-weight:700;letter-spacing:-0.025em;margin-top:16px;color:#16324f;">Clearing &amp;<br><span style="color:#e0961e;">forwarding</span></h2>
+      <p style="font-size:17px;line-height:1.75;color:#4a5b6b;margin-top:24px;max-width:520px;">Linsford Group has been part of the logistics industry for more than 30 years and continues to provide solutions to our clients' shipment needs. Based in Cape Town, the Mother City, we have agents at most major ports — both locally and overseas. We are rated <strong style="color:#16324f;">BEE Level Two</strong>, providing the right partnership for your business or industry.</p>
+      <a href="quote.html" style="display:inline-flex;align-items:center;gap:10px;background:#e0961e;color:#0f2d4d;font-weight:600;font-size:15px;padding:16px 28px;border-radius:12px;margin-top:32px;text-decoration:none;box-shadow:0 16px 36px -16px rgba(224,150,30,0.85);transition:transform .18s ease,background .18s ease,color .18s ease;" style-hover="transform:translateY(-3px);background:#0f2d4d !important;color:#e0961e !important;">Request a Quote</a>
+    </div>
+    <div style="position:relative;">
+      <div style="position:absolute;top:-18px;right:-18px;width:120px;height:120px;border-radius:20px;background:#f4f6f8;z-index:0;"></div>
+      <div style="position:absolute;bottom:-18px;left:-18px;width:90px;height:90px;border-radius:16px;background:rgba(224,150,30,0.16);z-index:0;"></div>
+      <div style="position:relative;z-index:1;height:460px;border-radius:22px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(15,45,77,0.55);">
+        <image-slot id="lg-warehouse" shape="rect" fit="cover" placeholder="Warehouse interior" src="../assets/images/warehouse.jpg"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page-section" style="background:#f4f6f8;transition:background .4s ease;" style-hover="background:#f7f4ec !important;">
+    <div class="stack-cols-2 about-panel" style="max-width:1180px;margin:0 auto;padding:120px 32px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:0;align-items:center;">
+      <div style="position:relative;z-index:1;height:520px;border-radius:22px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(15,45,77,0.55);">
+        <image-slot id="lg-ship" shape="rect" fit="cover" placeholder="Container ship at port" src="../assets/images/container-ship.jpg"></image-slot>
+      </div>
+      <div style="background:#fff;border-radius:24px;padding:56px;margin-left:-72px;box-shadow:0 60px 110px -50px rgba(15,45,77,0.45);position:relative;z-index:2;">
+        <span style="font-weight:600;letter-spacing:0.24em;text-transform:uppercase;font-size:13px;color:#8a97a4;">About Linsford</span>
+        <h2 style="font-size:clamp(32px,3.6vw,46px);line-height:1.08;font-weight:700;letter-spacing:-0.025em;margin-top:14px;color:#16324f;">Quality import &amp; export <span style="color:#e0961e;">solutions.</span></h2>
+        <p style="font-size:16px;line-height:1.75;color:#4a5b6b;margin-top:22px;">Linsford Group has a reputation for being reliable, efficient and a trusted business partner. Our team consists of core members involved in the daily operation, with Customer Care as our key focus.</p>
+        <p style="font-size:16px;line-height:1.75;color:#4a5b6b;margin-top:16px;">Owing to the experience and expertise of our staff, we assist clients with all aspects of clearing and forwarding, for any type of commodity — ensuring your shipment is imported or exported to your requirements in the most affordable manner. We have also maintained a long-standing relationship with SARS customs and remain in good standing.</p>
+        <a href="services.html" style="display:inline-flex;align-items:center;gap:10px;color:#e0961e;font-weight:600;font-size:15px;padding:15px 28px;border-radius:12px;border:1.5px solid #e0961e;margin-top:30px;text-decoration:none;transition:background .18s ease,color .18s ease;" style-hover="background:#e0961e;color:#0f2d4d !important;">View Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section style="max-width:1000px;margin:0 auto;padding:110px 32px;">
+    <div class="stack-cols-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+      <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="3">
+        <div style="text-align:center;">
+          <div style="width:154px;height:154px;margin:0 auto;border-radius:50%;border:3px solid #e0961e;display:flex;align-items:center;justify-content:center;box-shadow:0 24px 50px -26px rgba(224,150,30,0.6);">
+            <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:44px;color:#16324f;">{{ stat.value }}</span>
+          </div>
+          <p style="font-size:16px;color:#6a7987;margin-top:20px;font-weight:500;">{{ stat.label }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-tone="dark" style="position:relative;overflow:hidden;background:#0f2d4d;padding:96px 32px;text-align:center;">
+    <div style="position:absolute;top:-40px;left:8%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(224,150,30,0.2),transparent 70%);animation:blob-fall 20s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-50px;right:10%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.07),transparent 70%);animation:blob-drift-home 26s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:820px;margin:0 auto;">
+      <h2 style="font-size:clamp(28px,3.6vw,44px);line-height:1.2;font-weight:700;color:#fff;">Whether a job is big or small, private individual or large corporation — we apply the same level of service to all our valued clients.</h2>
+      <a href="quote.html" style="display:inline-flex;align-items:center;gap:10px;background:#e0961e;color:#0f2d4d;font-weight:600;font-size:15px;padding:17px 32px;border-radius:12px;margin-top:36px;text-decoration:none;box-shadow:0 20px 44px -14px rgba(224,150,30,0.9);transition:transform .18s ease,background .18s ease,color .18s ease;" style-hover="transform:translateY(-3px);background:#0f2d4d !important;color:#e0961e !important;">Get a Quote →</a>
+    </div>
+  </section>
+
+</div>
+
+<dc-import name="site-footer" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { progress: 1 };
+
+  componentDidMount() {
+    this.setState({ progress: 0 });
+    const start = performance.now();
+    const dur = 1500;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const e = 1 - Math.pow(1 - t, 3);
+      this.setState({ progress: e });
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  renderVals() {
+    const p = this.state.progress;
+    const stats = [
+      { value: String(Math.round(30 * p)), label: 'Years of experience' },
+      { value: String(Math.round(12 * p)), label: 'Cities of operation' },
+      { value: Math.round(50 * p) + 'k', label: 'Delivered packages' },
+    ];
+    return { stats };
+  }
+}
+</script>
+</body>
+</html>
